@@ -1,0 +1,27 @@
+﻿@using MVCLibrary.Models.Entities
+@model List<TBLCATEGORY>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MYLayout.cshtml";
+}
+
+<h1>Kategoriler</h1>
+
+
+
+<table class="table table-bordered">
+    <tr class="table table-bordered">
+        <th>KATEGORİ ID</th>
+        <th>KATEGORİ ADI</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.CATEGORYID</td>
+            <td>@item.NAME</td>
+            <td><a href="Category/RemoveCategory/@item.CATEGORYID" class="btn btn-success">Sil</a></td>
+            <td><a href="Category/UpdateCategory/@item.CATEGORYID" class="btn btn-danger">Güncelle</a></td>
+        </tr>
+    }
+</table>
+<a href="/Category/AddCategory/" class="btn btn-primary">Yeni Kategori Ekle</a>
