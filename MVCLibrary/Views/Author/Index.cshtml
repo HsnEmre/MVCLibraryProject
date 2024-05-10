@@ -1,0 +1,41 @@
+﻿@using MVCLibrary.Models.Entities
+@model List<TBLAUTHOR>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MYLayout.cshtml";
+}
+
+<h2>Yazar Sayfası</h2>
+
+<table class="table table-bordered">
+    <tr>
+        <td>ID</td>
+        <td>AD</td>
+        <td>SOYAD</td>
+        <td>DETAY</td>
+        <th>SİL</th>
+        <th>GÜNCELLE</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.ID</td>
+            <td>@item.NAME</td>
+            <td>@item.SURNAME</td>
+            <td>@item.DETAİL</td>
+            <td>
+                @Html.ActionLink("Sil", "RemoveAuthor", new { id = item.ID }, new
+                {
+                    @class = "btn btn-danger"
+                    ,
+                    onclick = "return confirm('Silmek istiyor musunuz?')"
+                })
+            </td>
+            <td><a href="/Author/GetAuthor/@item.ID" class="btn btn-success">Güncelle</a></td>
+        </tr>
+    }
+</table>
+<a class=" btn btn-primary" href="/Author/AddAuthor/">Yeni Yazar Ekle</a>
+
+

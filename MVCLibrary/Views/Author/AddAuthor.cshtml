@@ -1,0 +1,26 @@
+﻿@model MVCLibrary.Models.Entities.TBLAUTHOR
+@{
+    ViewBag.Title = "AddAuthor";
+    Layout = "~/Views/Shared/_MYLayout.cshtml";
+}
+
+<h2>Yazar Ekle</h2>
+
+<form class="form-group" method="post">
+    <div></div>
+    <div style="margin-top:15px">
+        <label>YAZAR ADI:</label>
+        @Html.TextBoxFor(x => x.NAME, new { @class = "form-control" })
+    </div>
+    <div style="margin-top:15px">
+        <label>YAZAR SOYADI:</label>
+        @Html.TextBoxFor(x => x.SURNAME, new { @class = "form-control" })
+    </div>
+    <div style="margin-top:15px">
+        <label>YAZAR DETAY:</label>
+        @Html.TextBoxFor(x => x.DETAİL, new { @class = "form-control" })
+    </div>
+    <div style="margin-top:15px">
+        <button class="btn btn-info"> Yeni Yazar Ekle</button>
+    </div>
+</form>
