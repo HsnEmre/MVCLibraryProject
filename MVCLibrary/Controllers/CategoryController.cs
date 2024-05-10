@@ -57,5 +57,25 @@ namespace MVCLibrary.Controllers
         }
 
         #endregion
+
+
+        #region GetCategory
+       public ActionResult GetCategories(int id)
+        {
+            var dtg=db.TBLCATEGORY.Find(id);
+
+            return View("GetCategories",dtg);
+        }
+        #endregion
+
+        #region updateCategory
+        public ActionResult UpdateCategory(TBLCATEGORY p)
+        {
+            var ctg=db.TBLCATEGORY.Find(p.CATEGORYID);
+            ctg.NAME=p.NAME;
+            db.SaveChanges();
+            return RedirectToAction("Index");                   
+        }
+        #endregion
     }
 }

@@ -206,11 +206,46 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DBLIBRARYModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DBLIBRARYEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="DBLIBRARYModel.sysdiagrams" />
+          <EntitySet Name="TBLAUTHOR" EntityType="DBLIBRARYModel.TBLAUTHOR" />
+          <EntitySet Name="TBLBOOK" EntityType="DBLIBRARYModel.TBLBOOK" />
+          <EntitySet Name="TBLCATEGORY" EntityType="DBLIBRARYModel.TBLCATEGORY" />
+          <EntitySet Name="TBLEMPLOYEE" EntityType="DBLIBRARYModel.TBLEMPLOYEE" />
+          <EntitySet Name="TBLMEMBERS" EntityType="DBLIBRARYModel.TBLMEMBERS" />
+          <EntitySet Name="TBLMOVE" EntityType="DBLIBRARYModel.TBLMOVE" />
+          <EntitySet Name="TBLPUNISHMENT" EntityType="DBLIBRARYModel.TBLPUNISHMENT" />
+          <EntitySet Name="TBLTILL" EntityType="DBLIBRARYModel.TBLTILL" />
+          <AssociationSet Name="FK_TBLBOOK_TBLAUTHOR" Association="DBLIBRARYModel.FK_TBLBOOK_TBLAUTHOR">
+            <End Role="TBLAUTHOR" EntitySet="TBLAUTHOR" />
+            <End Role="TBLBOOK" EntitySet="TBLBOOK" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLBOOK_TBLCATEGORY" Association="DBLIBRARYModel.FK_TBLBOOK_TBLCATEGORY">
+            <End Role="TBLCATEGORY" EntitySet="TBLCATEGORY" />
+            <End Role="TBLBOOK" EntitySet="TBLBOOK" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLMOVE_TBLBOOK" Association="DBLIBRARYModel.FK_TBLMOVE_TBLBOOK">
+            <End Role="TBLBOOK" EntitySet="TBLBOOK" />
+            <End Role="TBLMOVE" EntitySet="TBLMOVE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLPUNISHMENT_TBLMEMBERS" Association="DBLIBRARYModel.FK_TBLPUNISHMENT_TBLMEMBERS">
+            <End Role="TBLMEMBERS" EntitySet="TBLMEMBERS" />
+            <End Role="TBLPUNISHMENT" EntitySet="TBLPUNISHMENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLPUNISHMENT_TBLMEMBERS1" Association="DBLIBRARYModel.FK_TBLPUNISHMENT_TBLMEMBERS1">
+            <End Role="TBLMEMBERS" EntitySet="TBLMEMBERS" />
+            <End Role="TBLPUNISHMENT" EntitySet="TBLPUNISHMENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLPUNISHMENT_TBLMOVE" Association="DBLIBRARYModel.FK_TBLPUNISHMENT_TBLMOVE">
+            <End Role="TBLMOVE" EntitySet="TBLMOVE" />
+            <End Role="TBLPUNISHMENT" EntitySet="TBLPUNISHMENT" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
           </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="principal_id" Type="Int32" Nullable="false" />
           <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="version" Type="Int32" />
@@ -224,7 +259,7 @@
           <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="SURNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="DETAİL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="TBLBOOK" Relationship="Self.FK_TBLBOOK_TBLAUTHOR" FromRole="TBLAUTHOR" ToRole="TBLBOOK" />
+          <NavigationProperty Name="TBLBOOK" Relationship="DBLIBRARYModel.FK_TBLBOOK_TBLAUTHOR" FromRole="TBLAUTHOR" ToRole="TBLBOOK" />
         </EntityType>
         <EntityType Name="TBLBOOK">
           <Key>
@@ -238,17 +273,17 @@
           <Property Name="PUBLISHER" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="SHEET" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="SITUATION" Type="Boolean" />
-          <NavigationProperty Name="TBLAUTHOR" Relationship="Self.FK_TBLBOOK_TBLAUTHOR" FromRole="TBLBOOK" ToRole="TBLAUTHOR" />
-          <NavigationProperty Name="TBLCATEGORY" Relationship="Self.FK_TBLBOOK_TBLCATEGORY" FromRole="TBLBOOK" ToRole="TBLCATEGORY" />
-          <NavigationProperty Name="TBLMOVE" Relationship="Self.FK_TBLMOVE_TBLBOOK" FromRole="TBLBOOK" ToRole="TBLMOVE" />
+          <NavigationProperty Name="TBLAUTHOR" Relationship="DBLIBRARYModel.FK_TBLBOOK_TBLAUTHOR" FromRole="TBLBOOK" ToRole="TBLAUTHOR" />
+          <NavigationProperty Name="TBLCATEGORY" Relationship="DBLIBRARYModel.FK_TBLBOOK_TBLCATEGORY" FromRole="TBLBOOK" ToRole="TBLCATEGORY" />
+          <NavigationProperty Name="TBLMOVE" Relationship="DBLIBRARYModel.FK_TBLMOVE_TBLBOOK" FromRole="TBLBOOK" ToRole="TBLMOVE" />
         </EntityType>
         <EntityType Name="TBLCATEGORY">
           <Key>
             <PropertyRef Name="CATEGORYID" />
           </Key>
-          <Property Name="CATEGORYID" Type="Int32" Nullable="false" />
+          <Property Name="CATEGORYID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="TBLBOOK" Relationship="Self.FK_TBLBOOK_TBLCATEGORY" FromRole="TBLCATEGORY" ToRole="TBLBOOK" />
+          <NavigationProperty Name="TBLBOOK" Relationship="DBLIBRARYModel.FK_TBLBOOK_TBLCATEGORY" FromRole="TBLCATEGORY" ToRole="TBLBOOK" />
         </EntityType>
         <EntityType Name="TBLEMPLOYEE">
           <Key>
@@ -270,8 +305,8 @@
           <Property Name="PHOTGHRAPH" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="PHONENUMBER" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="SCHOOL" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="TBLPUNISHMENT" Relationship="Self.FK_TBLPUNISHMENT_TBLMEMBERS" FromRole="TBLMEMBERS" ToRole="TBLPUNISHMENT" />
-          <NavigationProperty Name="TBLPUNISHMENT1" Relationship="Self.FK_TBLPUNISHMENT_TBLMEMBERS1" FromRole="TBLMEMBERS" ToRole="TBLPUNISHMENT" />
+          <NavigationProperty Name="TBLPUNISHMENT" Relationship="DBLIBRARYModel.FK_TBLPUNISHMENT_TBLMEMBERS" FromRole="TBLMEMBERS" ToRole="TBLPUNISHMENT" />
+          <NavigationProperty Name="TBLPUNISHMENT1" Relationship="DBLIBRARYModel.FK_TBLPUNISHMENT_TBLMEMBERS1" FromRole="TBLMEMBERS" ToRole="TBLPUNISHMENT" />
         </EntityType>
         <EntityType Name="TBLMOVE">
           <Key>
@@ -283,8 +318,8 @@
           <Property Name="EMPLOYEE" Type="Int32" />
           <Property Name="PURCHASEDATE" Type="DateTime" Precision="0" />
           <Property Name="ISSUEDATE" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="TBLBOOK" Relationship="Self.FK_TBLMOVE_TBLBOOK" FromRole="TBLMOVE" ToRole="TBLBOOK" />
-          <NavigationProperty Name="TBLPUNISHMENT" Relationship="Self.FK_TBLPUNISHMENT_TBLMOVE" FromRole="TBLMOVE" ToRole="TBLPUNISHMENT" />
+          <NavigationProperty Name="TBLBOOK" Relationship="DBLIBRARYModel.FK_TBLMOVE_TBLBOOK" FromRole="TBLMOVE" ToRole="TBLBOOK" />
+          <NavigationProperty Name="TBLPUNISHMENT" Relationship="DBLIBRARYModel.FK_TBLPUNISHMENT_TBLMOVE" FromRole="TBLMOVE" ToRole="TBLPUNISHMENT" />
         </EntityType>
         <EntityType Name="TBLPUNISHMENT">
           <Key>
@@ -296,9 +331,9 @@
           <Property Name="ENDDATE" Type="DateTime" Precision="0" />
           <Property Name="MONEY" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="MOVE" Type="Int32" />
-          <NavigationProperty Name="TBLMEMBERS" Relationship="Self.FK_TBLPUNISHMENT_TBLMEMBERS" FromRole="TBLPUNISHMENT" ToRole="TBLMEMBERS" />
-          <NavigationProperty Name="TBLMEMBERS1" Relationship="Self.FK_TBLPUNISHMENT_TBLMEMBERS1" FromRole="TBLPUNISHMENT" ToRole="TBLMEMBERS" />
-          <NavigationProperty Name="TBLMOVE" Relationship="Self.FK_TBLPUNISHMENT_TBLMOVE" FromRole="TBLPUNISHMENT" ToRole="TBLMOVE" />
+          <NavigationProperty Name="TBLMEMBERS" Relationship="DBLIBRARYModel.FK_TBLPUNISHMENT_TBLMEMBERS" FromRole="TBLPUNISHMENT" ToRole="TBLMEMBERS" />
+          <NavigationProperty Name="TBLMEMBERS1" Relationship="DBLIBRARYModel.FK_TBLPUNISHMENT_TBLMEMBERS1" FromRole="TBLPUNISHMENT" ToRole="TBLMEMBERS" />
+          <NavigationProperty Name="TBLMOVE" Relationship="DBLIBRARYModel.FK_TBLPUNISHMENT_TBLMOVE" FromRole="TBLPUNISHMENT" ToRole="TBLMOVE" />
         </EntityType>
         <EntityType Name="TBLTILL">
           <Key>
@@ -309,8 +344,8 @@
           <Property Name="SUM" Type="Decimal" Precision="18" Scale="2" />
         </EntityType>
         <Association Name="FK_TBLBOOK_TBLAUTHOR">
-          <End Role="TBLAUTHOR" Type="Self.TBLAUTHOR" Multiplicity="0..1" />
-          <End Role="TBLBOOK" Type="Self.TBLBOOK" Multiplicity="*" />
+          <End Type="DBLIBRARYModel.TBLAUTHOR" Role="TBLAUTHOR" Multiplicity="0..1" />
+          <End Type="DBLIBRARYModel.TBLBOOK" Role="TBLBOOK" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TBLAUTHOR">
               <PropertyRef Name="ID" />
@@ -321,8 +356,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TBLBOOK_TBLCATEGORY">
-          <End Role="TBLCATEGORY" Type="Self.TBLCATEGORY" Multiplicity="0..1" />
-          <End Role="TBLBOOK" Type="Self.TBLBOOK" Multiplicity="*" />
+          <End Type="DBLIBRARYModel.TBLCATEGORY" Role="TBLCATEGORY" Multiplicity="0..1" />
+          <End Type="DBLIBRARYModel.TBLBOOK" Role="TBLBOOK" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TBLCATEGORY">
               <PropertyRef Name="CATEGORYID" />
@@ -333,8 +368,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TBLMOVE_TBLBOOK">
-          <End Role="TBLBOOK" Type="Self.TBLBOOK" Multiplicity="0..1" />
-          <End Role="TBLMOVE" Type="Self.TBLMOVE" Multiplicity="*" />
+          <End Type="DBLIBRARYModel.TBLBOOK" Role="TBLBOOK" Multiplicity="0..1" />
+          <End Type="DBLIBRARYModel.TBLMOVE" Role="TBLMOVE" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TBLBOOK">
               <PropertyRef Name="ID" />
@@ -345,8 +380,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TBLPUNISHMENT_TBLMEMBERS">
-          <End Role="TBLMEMBERS" Type="Self.TBLMEMBERS" Multiplicity="0..1" />
-          <End Role="TBLPUNISHMENT" Type="Self.TBLPUNISHMENT" Multiplicity="*" />
+          <End Type="DBLIBRARYModel.TBLMEMBERS" Role="TBLMEMBERS" Multiplicity="0..1" />
+          <End Type="DBLIBRARYModel.TBLPUNISHMENT" Role="TBLPUNISHMENT" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TBLMEMBERS">
               <PropertyRef Name="ID" />
@@ -357,8 +392,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TBLPUNISHMENT_TBLMEMBERS1">
-          <End Role="TBLMEMBERS" Type="Self.TBLMEMBERS" Multiplicity="0..1" />
-          <End Role="TBLPUNISHMENT" Type="Self.TBLPUNISHMENT" Multiplicity="*" />
+          <End Type="DBLIBRARYModel.TBLMEMBERS" Role="TBLMEMBERS" Multiplicity="0..1" />
+          <End Type="DBLIBRARYModel.TBLPUNISHMENT" Role="TBLPUNISHMENT" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TBLMEMBERS">
               <PropertyRef Name="ID" />
@@ -369,8 +404,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TBLPUNISHMENT_TBLMOVE">
-          <End Role="TBLMOVE" Type="Self.TBLMOVE" Multiplicity="0..1" />
-          <End Role="TBLPUNISHMENT" Type="Self.TBLPUNISHMENT" Multiplicity="*" />
+          <End Type="DBLIBRARYModel.TBLMOVE" Role="TBLMOVE" Multiplicity="0..1" />
+          <End Type="DBLIBRARYModel.TBLPUNISHMENT" Role="TBLPUNISHMENT" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TBLMOVE">
               <PropertyRef Name="ID" />
@@ -380,41 +415,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="DBLIBRARYEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-          <EntitySet Name="TBLAUTHOR" EntityType="Self.TBLAUTHOR" />
-          <EntitySet Name="TBLBOOK" EntityType="Self.TBLBOOK" />
-          <EntitySet Name="TBLCATEGORY" EntityType="Self.TBLCATEGORY" />
-          <EntitySet Name="TBLEMPLOYEE" EntityType="Self.TBLEMPLOYEE" />
-          <EntitySet Name="TBLMEMBERS" EntityType="Self.TBLMEMBERS" />
-          <EntitySet Name="TBLMOVE" EntityType="Self.TBLMOVE" />
-          <EntitySet Name="TBLPUNISHMENT" EntityType="Self.TBLPUNISHMENT" />
-          <EntitySet Name="TBLTILL" EntityType="Self.TBLTILL" />
-          <AssociationSet Name="FK_TBLBOOK_TBLAUTHOR" Association="Self.FK_TBLBOOK_TBLAUTHOR">
-            <End Role="TBLAUTHOR" EntitySet="TBLAUTHOR" />
-            <End Role="TBLBOOK" EntitySet="TBLBOOK" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TBLBOOK_TBLCATEGORY" Association="Self.FK_TBLBOOK_TBLCATEGORY">
-            <End Role="TBLCATEGORY" EntitySet="TBLCATEGORY" />
-            <End Role="TBLBOOK" EntitySet="TBLBOOK" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TBLMOVE_TBLBOOK" Association="Self.FK_TBLMOVE_TBLBOOK">
-            <End Role="TBLBOOK" EntitySet="TBLBOOK" />
-            <End Role="TBLMOVE" EntitySet="TBLMOVE" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TBLPUNISHMENT_TBLMEMBERS" Association="Self.FK_TBLPUNISHMENT_TBLMEMBERS">
-            <End Role="TBLMEMBERS" EntitySet="TBLMEMBERS" />
-            <End Role="TBLPUNISHMENT" EntitySet="TBLPUNISHMENT" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TBLPUNISHMENT_TBLMEMBERS1" Association="Self.FK_TBLPUNISHMENT_TBLMEMBERS1">
-            <End Role="TBLMEMBERS" EntitySet="TBLMEMBERS" />
-            <End Role="TBLPUNISHMENT" EntitySet="TBLPUNISHMENT" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TBLPUNISHMENT_TBLMOVE" Association="Self.FK_TBLPUNISHMENT_TBLMOVE">
-            <End Role="TBLMOVE" EntitySet="TBLMOVE" />
-            <End Role="TBLPUNISHMENT" EntitySet="TBLPUNISHMENT" />
-          </AssociationSet>
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -424,99 +424,99 @@
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="DBLIBRARYModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TBLAUTHOR">
             <EntityTypeMapping TypeName="DBLIBRARYModel.TBLAUTHOR">
               <MappingFragment StoreEntitySet="TBLAUTHOR">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="NAME" ColumnName="NAME" />
-                <ScalarProperty Name="SURNAME" ColumnName="SURNAME" />
                 <ScalarProperty Name="DETAİL" ColumnName="DETAİL" />
+                <ScalarProperty Name="SURNAME" ColumnName="SURNAME" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TBLBOOK">
             <EntityTypeMapping TypeName="DBLIBRARYModel.TBLBOOK">
               <MappingFragment StoreEntitySet="TBLBOOK">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="NAME" ColumnName="NAME" />
-                <ScalarProperty Name="CATEGORY" ColumnName="CATEGORY" />
-                <ScalarProperty Name="AUTHOR" ColumnName="AUTHOR" />
-                <ScalarProperty Name="PUBLICYEAR" ColumnName="PUBLICYEAR" />
-                <ScalarProperty Name="PUBLISHER" ColumnName="PUBLISHER" />
-                <ScalarProperty Name="SHEET" ColumnName="SHEET" />
                 <ScalarProperty Name="SITUATION" ColumnName="SITUATION" />
+                <ScalarProperty Name="SHEET" ColumnName="SHEET" />
+                <ScalarProperty Name="PUBLISHER" ColumnName="PUBLISHER" />
+                <ScalarProperty Name="PUBLICYEAR" ColumnName="PUBLICYEAR" />
+                <ScalarProperty Name="AUTHOR" ColumnName="AUTHOR" />
+                <ScalarProperty Name="CATEGORY" ColumnName="CATEGORY" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TBLCATEGORY">
             <EntityTypeMapping TypeName="DBLIBRARYModel.TBLCATEGORY">
               <MappingFragment StoreEntitySet="TBLCATEGORY">
-                <ScalarProperty Name="CATEGORYID" ColumnName="CATEGORYID" />
                 <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="CATEGORYID" ColumnName="CATEGORYID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TBLEMPLOYEE">
             <EntityTypeMapping TypeName="DBLIBRARYModel.TBLEMPLOYEE">
               <MappingFragment StoreEntitySet="TBLEMPLOYEE">
-                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="EMPLOYEE" ColumnName="EMPLOYEE" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TBLMEMBERS">
             <EntityTypeMapping TypeName="DBLIBRARYModel.TBLMEMBERS">
               <MappingFragment StoreEntitySet="TBLMEMBERS">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="NAME" ColumnName="NAME" />
-                <ScalarProperty Name="SURNAME" ColumnName="SURNAME" />
-                <ScalarProperty Name="MAIL" ColumnName="MAIL" />
-                <ScalarProperty Name="NICKNAME" ColumnName="NICKNAME" />
-                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
-                <ScalarProperty Name="PHOTGHRAPH" ColumnName="PHOTGHRAPH" />
-                <ScalarProperty Name="PHONENUMBER" ColumnName="PHONENUMBER" />
                 <ScalarProperty Name="SCHOOL" ColumnName="SCHOOL" />
+                <ScalarProperty Name="PHONENUMBER" ColumnName="PHONENUMBER" />
+                <ScalarProperty Name="PHOTGHRAPH" ColumnName="PHOTGHRAPH" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="NICKNAME" ColumnName="NICKNAME" />
+                <ScalarProperty Name="MAIL" ColumnName="MAIL" />
+                <ScalarProperty Name="SURNAME" ColumnName="SURNAME" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TBLMOVE">
             <EntityTypeMapping TypeName="DBLIBRARYModel.TBLMOVE">
               <MappingFragment StoreEntitySet="TBLMOVE">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="BOOK" ColumnName="BOOK" />
-                <ScalarProperty Name="MEMBER" ColumnName="MEMBER" />
-                <ScalarProperty Name="EMPLOYEE" ColumnName="EMPLOYEE" />
-                <ScalarProperty Name="PURCHASEDATE" ColumnName="PURCHASEDATE" />
                 <ScalarProperty Name="ISSUEDATE" ColumnName="ISSUEDATE" />
+                <ScalarProperty Name="PURCHASEDATE" ColumnName="PURCHASEDATE" />
+                <ScalarProperty Name="EMPLOYEE" ColumnName="EMPLOYEE" />
+                <ScalarProperty Name="MEMBER" ColumnName="MEMBER" />
+                <ScalarProperty Name="BOOK" ColumnName="BOOK" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TBLPUNISHMENT">
             <EntityTypeMapping TypeName="DBLIBRARYModel.TBLPUNISHMENT">
               <MappingFragment StoreEntitySet="TBLPUNISHMENT">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="UYE" ColumnName="UYE" />
-                <ScalarProperty Name="STARTDATE" ColumnName="STARTDATE" />
-                <ScalarProperty Name="ENDDATE" ColumnName="ENDDATE" />
-                <ScalarProperty Name="MONEY" ColumnName="MONEY" />
                 <ScalarProperty Name="MOVE" ColumnName="MOVE" />
+                <ScalarProperty Name="MONEY" ColumnName="MONEY" />
+                <ScalarProperty Name="ENDDATE" ColumnName="ENDDATE" />
+                <ScalarProperty Name="STARTDATE" ColumnName="STARTDATE" />
+                <ScalarProperty Name="UYE" ColumnName="UYE" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TBLTILL">
             <EntityTypeMapping TypeName="DBLIBRARYModel.TBLTILL">
               <MappingFragment StoreEntitySet="TBLTILL">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="MONTH" ColumnName="MONTH" />
                 <ScalarProperty Name="SUM" ColumnName="SUM" />
+                <ScalarProperty Name="MONTH" ColumnName="MONTH" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
