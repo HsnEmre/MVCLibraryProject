@@ -1,0 +1,56 @@
+﻿@model MVCLibrary.Models.Entities.TBLMEMBERS
+@{
+    ViewBag.Title = "AddMember";
+    Layout = "~/Views/Shared/_MYLayout.cshtml";
+}
+
+<h2>Yeni Üye Ekle</h2>
+
+
+<form class="form-group" method="post">
+    <div></div>
+    <div style="margin-top:15px">
+        <label>Üye Adı:</label>
+        @Html.TextBoxFor(x => x.NAME, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.NAME, "", new { @style = "color:red" })
+    </div>
+    <div style="margin-top:15px">
+        <label>Üye Soyadı:</label>
+        @Html.TextBoxFor(x => x.SURNAME, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.SURNAME, "", new { @style = "color:red" })
+    </div>
+    <div style="margin-top:15px">
+        <label> Üye Mail:</label>
+        @Html.TextBoxFor(x => x.MAIL, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.MAIL, "", new { @style = "color:red" })
+    </div>
+    <div style="margin-top:15px">
+        <label>Üye Nickname:</label>
+        @Html.TextBoxFor(x => x.NICKNAME, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.NICKNAME, "", new { @style = "color:red" })
+    </div>
+    <div style="margin-top:15px">
+        <label>Üye Şifre:</label>
+        @Html.PasswordFor(x => x.PASSWORD, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.PASSWORD, "", new { @style = "color:red" })
+    </div>
+    <div style="margin-top:15px">
+        <label>Üye Fotoğraf:</label>
+        @Html.TextBoxFor(x => x.PHOTGHRAPH, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.PHOTGHRAPH, "", new { @style = "color:red" })
+    </div>
+    <div style="margin-top:15px">
+        <label>Üye Telefon:</label>
+        @Html.TextBoxFor(x => x.PHONENUMBER, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.PHONENUMBER, "", new { @style = "color:red" })
+    </div>
+    <div style="margin-top:15px">
+        <label>Üye Okul Adı:</label>
+        @Html.TextBoxFor(x => x.SCHOOL, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.SCHOOL, "", new { @style = "color:red" })
+    </div>
+
+    <div style="margin-top:15px">
+        <button class="btn btn-info" id="btn1">Personel Ekle</button>
+    </div>
+</form>

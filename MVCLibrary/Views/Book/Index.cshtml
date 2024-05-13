@@ -1,0 +1,49 @@
+﻿@using MVCLibrary.Models.Entities
+@model List<TBLBOOK>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MYLayout.cshtml";
+}
+
+<h2>Kitap Sayfası</h2>
+@using (Html.BeginForm("Index", "Book", FormMethod.Get))
+{
+    <div style="margin-bottom:15px; margin-top:15px">
+        <b>Aranacak Kitap Adını Griniz:</b>@Html.TextBox("parameter")
+        <input type="submit" value="ara"/>
+    </div>
+
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>KİTAP ADI:</th>
+        <th>KİTAP YAZARI:</th>
+        <th>KİTAP KATEGORİ:</th>
+        <th>KİTAP BASIM YIL:</th>
+        <th>KİTAP YAYIN EVİ:</th>
+        <th>KİTAP SAYFA:</th>
+        <th>KİTAP DURUM:</th>
+        <th>SİL</th>
+        <th>GÜNCELLE</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.ID</td>
+            <td>@item.NAME</td>
+            <td>@item.TBLAUTHOR.NAME @item.TBLAUTHOR.SURNAME</td>
+            <td>@item.TBLCATEGORY.NAME</td>
+            <td>@item.PUBLICYEAR</td>
+            <td>@item.PUBLISHER</td>
+            <td>@item.SHEET</td>
+            <td>@item.SITUATION</td>
+            <td><a href="/Book/RemoveBook/@item.ID" class=" btn btn-danger">SİL</a></td>
+            <td><a href="/Book/GetBook/@item.ID" class=" btn btn-success">Güncelle</a></td>
+        </tr>
+    }
+</table>
+<a href="/Book/AddBook" class="btn btn-primary">Yeni Kitap Ekle</a>
+
+

@@ -11,7 +11,8 @@ namespace MVCLibrary.Models.Entities
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class TBLMEMBERS
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,13 +23,21 @@ namespace MVCLibrary.Models.Entities
         }
     
         public int ID { get; set; }
+        [Required(ErrorMessage ="Adý alaný boþ geçilemez!"),StringLength(50,ErrorMessage ="En fazla 50 karakter!")]
         public string NAME { get; set; }
+        [Required(ErrorMessage = "Soyadý alaný boþ geçilemez")]
         public string SURNAME { get; set; }
+        [Required(ErrorMessage = "Mail alaný boþ geçilemez")]
         public string MAIL { get; set; }
+        [Required(ErrorMessage = "Nickname alaný boþ geçilemez")]
         public string NICKNAME { get; set; }
+        [Required(ErrorMessage = "Þifre alaný boþ geçilemez"),StringLength(20,ErrorMessage ="En fazla 20 karakter girilebilir!")]
         public string PASSWORD { get; set; }
+        [Required(ErrorMessage = "Fotoðraf alaný boþ geçilemez")]
         public string PHOTGHRAPH { get; set; }
+        [Required(ErrorMessage = "Telefon alaný boþ geçilemez")]
         public string PHONENUMBER { get; set; }
+        [Required(ErrorMessage = "Okul alaný boþ geçilemez")]
         public string SCHOOL { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -1,0 +1,44 @@
+﻿@using MVCLibrary.Models.Entities;
+@using PagedList
+@using PagedList.Mvc
+@model PagedList.IPagedList<TBLMEMBERS>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MYLayout.cshtml";
+}
+
+<h2>ÜYE Sayfası</h2>
+
+<table class="table table-bordered">
+    <tr>
+        <th>ÜYE ID</th>
+        <th>ÜYE ADI</th>
+        <th>ÜYE SOYADI</th>
+        <th>ÜYE MAİL</th>
+        <th>ÜYE NİCKNAME</th>
+        <th>ÜYE ŞİFRE</th>
+        <th>ÜYE FOTOĞRAF</th>
+        <th>ÜYE TELEFON NUMARASI</th>
+        <th>ÜYE OKUL</th>
+        <th>SİL</th>
+        <th>GÜNCELLE</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.ID</td>
+            <td>@item.NAME</td>
+            <td>@item.SURNAME</td>
+            <td>@item.MAIL</td>
+            <td>@item.NICKNAME</td>
+            <td>@item.PASSWORD</td>
+            <td>@item.PHOTGHRAPH</td>
+            <td>@item.PHONENUMBER</td>
+            <td>@item.SCHOOL</td>
+            <td><a href="/Member/RemoveMember/@item.ID" class="btn btn-danger">SİL</a></td>
+            <td><a href="/Member/GetMember/@item.ID" class="btn btn-success">GÜNCELLE</a></td>
+        </tr>
+    }
+</table>
+@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Index", new { sayfa }))
+<a href="/Member/AddMember/" class="btn btn-info">Yeni Üye Ekle</a>

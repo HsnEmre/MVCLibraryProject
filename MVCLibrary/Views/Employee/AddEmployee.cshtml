@@ -1,0 +1,21 @@
+﻿@model MVCLibrary.Models.Entities.TBLEMPLOYEE
+
+@{
+    ViewBag.Title = "AddEmployee";
+    Layout = "~/Views/Shared/_MYLayout.cshtml";
+}
+
+<h2>Personel Ekle</h2>
+
+<form class="form-group" method="post">
+    <div></div>
+    <div style="margin-top:15px">
+        <label>Personel Adı:</label>
+        @*<input type="text" name="EMPLOYEE" class="form-control"  />*@
+        @Html.TextBoxFor(x => x.EMPLOYEE, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.EMPLOYEE, "", new { @style = "color:red" })
+    </div>
+    <div style="margin-top:15px">
+        <button class="btn btn-info" id="btn1">Personel Ekle</button>
+    </div>
+</form>
