@@ -1,0 +1,38 @@
+﻿@model MVCLibrary.Models.Entities.TBLMOVE
+@{
+    ViewBag.Title = "Loan";
+    Layout = "~/Views/Shared/_MYLayout.cshtml";
+}
+
+<h2>Ödünç Ver</h2>
+
+
+<form method="post" class="form-group">
+
+    <div></div>
+    <div style="margin-top:15px">
+        <label>ÜYE ID:</label>
+        @Html.TextBoxFor(x => x.MEMBER, new { @class = "form-control" })
+    </div>
+    <div style="margin-top:15px">
+        <label>KİTAP ADI:</label>
+        @Html.TextBoxFor(x => x.BOOK, new { @class = "form-control" })
+    </div>
+    <div style="margin-top:15px">
+        <label>PERSONEL ID:</label>
+        @Html.TextBoxFor(x => x.EMPLOYEE, new { @class = "form-control color:white" })
+    </div>
+    <div style="margin-top:15px">
+        <label>KİTAP ALIŞ TARİHİ:</label>
+        <input type="text" class="form-control" name:"PURCHASEDATE"  value="@DateTime.Now.ToShortDateString()"/>
+    </div>
+    <div style="margin-top:15px">
+        <label>KİTAP İADE TARİHİ:</label>
+        <input type="text" class="form-control" name:"ISSUEDATE" value="@DateTime.Now.AddDays(15).ToShortDateString()" />
+    </div>
+    <div style="margin-top:15px">
+        <button class="btn btn-info" style="background-color:#de03ff">Ödünç Kitap Ver</button>
+    </div>
+
+
+</form>
