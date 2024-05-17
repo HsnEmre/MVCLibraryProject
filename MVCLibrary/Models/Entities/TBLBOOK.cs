@@ -28,6 +28,7 @@ namespace MVCLibrary.Models.Entities
         public string PUBLISHER { get; set; }
         public string SHEET { get; set; }
         public Nullable<bool> SITUATION { get; set; }
+        public string BOOKPHOTO { get; set; }
     
         public virtual TBLAUTHOR TBLAUTHOR { get; set; }
         public virtual TBLCATEGORY TBLCATEGORY { get; set; }

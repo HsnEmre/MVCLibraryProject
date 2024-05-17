@@ -1,0 +1,12 @@
+﻿.custom-validation-message {
+    color: #ecf0f1;
+    font-size: .9em;
+    background-color: #e74c3c;
+    padding: 10px;
+    display:none;/*Varsayılan olarak gizle*/
+}
+
+
+.field-validation-error {
+    display: block !important; /* Hata olduğunda göster */
+}

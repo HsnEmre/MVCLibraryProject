@@ -4,7 +4,7 @@
     ViewBag.Title = "AddEmployee";
     Layout = "~/Views/Shared/_MYLayout.cshtml";
 }
-
+<link href="~/CustomMyCSS/MyCustomCss1.css" rel="stylesheet" />
 <h2>Personel Ekle</h2>
 
 <form class="form-group" method="post">
@@ -13,7 +13,7 @@
         <label>Personel Adı:</label>
         @*<input type="text" name="EMPLOYEE" class="form-control"  />*@
         @Html.TextBoxFor(x => x.EMPLOYEE, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.EMPLOYEE, "", new { @style = "color:red" })
+        @Html.ValidationMessageFor(x => x.EMPLOYEE, "", new { @class = "custom-validation-message " })
     </div>
     <div style="margin-top:15px">
         <button class="btn btn-info" id="btn1">Personel Ekle</button>

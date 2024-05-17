@@ -3,13 +3,14 @@
     ViewBag.Title = "AddCategory";
     Layout = "~/Views/Shared/_MYLayout.cshtml";
 }
-
+<link href="~/CustomMyCSS/MyCustomCss1.css" rel="stylesheet" />
 <h2>Kategori Ekle</h2>
 <form  method="post" class="form-group">
     <div style="margin-top:15px"></div>
     <div>
         <label>Kategori Adı:</label>
-        <input type="text" name="NAME" class="form-control"  />
+        <input type="text" name="NAME" class="form-control" />
+        @Html.ValidationMessageFor(x => x.NAME, "", new { @class = "custom-validation-message " })
     </div>
     <div style="margin-top:15px">
         <button class="btn btn-info" id="=btn1">Kategory Ekle</button>

@@ -3,7 +3,7 @@
     ViewBag.Title = "AddAuthor";
     Layout = "~/Views/Shared/_MYLayout.cshtml";
 }
-
+<link href="~/CustomMyCSS/MyCustomCss1.css" rel="stylesheet" />
 <h2>Yazar Ekle</h2>
 
 <form class="form-group" method="post">
@@ -11,14 +11,18 @@
     <div style="margin-top:15px">
         <label>YAZAR ADI:</label>
         @Html.TextBoxFor(x => x.NAME, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.NAME, "", new { @class = "custom-validation-message " })
     </div>
     <div style="margin-top:15px">
         <label>YAZAR SOYADI:</label>
         @Html.TextBoxFor(x => x.SURNAME, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.SURNAME, "", new { @class = "custom-validation-message " })
+
     </div>
     <div style="margin-top:15px">
         <label>YAZAR DETAY:</label>
         @Html.TextBoxFor(x => x.DETAİL, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.DETAİL, "", new { @class = "custom-validation-message " })
     </div>
     <div style="margin-top:15px">
         <button class="btn btn-info"> Yeni Yazar Ekle</button>

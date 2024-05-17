@@ -23,11 +23,15 @@ namespace MVCLibrary.Models.Entities
         public int ID { get; set; }
         public Nullable<int> BOOK { get; set; }
         public Nullable<int> MEMBER { get; set; }
-        public Nullable<int> EMPLOYEE { get; set; }
+        public Nullable<byte> EMPLOYEE { get; set; }
         public Nullable<System.DateTime> PURCHASEDATE { get; set; }
         public Nullable<System.DateTime> ISSUEDATE { get; set; }
+        public Nullable<System.DateTime> GETMEMBERDATE { get; set; }
+        public Nullable<bool> PROCESSSITUATION { get; set; }
     
         public virtual TBLBOOK TBLBOOK { get; set; }
+        public virtual TBLEMPLOYEE TBLEMPLOYEE { get; set; }
+        public virtual TBLMEMBERS TBLMEMBERS { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TBLPUNISHMENT> TBLPUNISHMENT { get; set; }
     }

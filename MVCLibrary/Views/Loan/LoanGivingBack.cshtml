@@ -1,0 +1,43 @@
+﻿@model MVCLibrary.Models.Entities.TBLMOVE
+@{
+    ViewBag.Title = "LoanGivingBack";
+    Layout = "~/Views/Shared/_MYLayout.cshtml";
+}
+
+<h2>ÖDÜNÇ İADE</h2>
+
+
+@using (Html.BeginForm("UpdateLoan","Loan",FormMethod.Post))
+{
+    <div style="margin-bottom:15px"></div>
+
+    <div class="form-group">
+        <label>HAREKET ID:</label>
+        @Html.TextBoxFor(x => x.ID, new { @class = "form-control" })
+        <br />
+        <label>KİTAP ADI:</label>
+        @Html.TextBoxFor(k => k.TBLBOOK.NAME, new { @class = "form-control" })
+        <br />
+        <label>ÜYE</label>
+        @Html.TextBoxFor(x => x.TBLMEMBERS.NAME, new { @class = "form-control" })
+        <br />
+        <label>KİTAP ADI:</label>
+        @Html.TextBoxFor(x => x.TBLEMPLOYEE.EMPLOYEE, new { @class = "form-control" })
+        <br />
+        <label>ALIŞ TARİH:</label>
+        @Html.TextBoxFor(x => x.PURCHASEDATE ,new { @class = "form-control" })
+        <br />
+        <label>IADE TARİH:</label>
+        @Html.TextBoxFor(x => x.ISSUEDATE, new { @class = "form-control" })
+        <br />
+        <label>ÜYENİN GETİRDİĞİ TARİH:</label>
+        <input type="text" class="form-control" name="GETMEMBERDATE" value="@DateTime.Now.ToShortDateString()" />
+        <br />
+        <label>Geç Gelen Gün Sayısı</label>
+        <input type="text" class="form-control" id="gecinput" value="@ViewBag.dgr" />
+        <div>
+            <button class="btn btn-group" style="background-color:#00ffff;color:white">Ödünç Kitabı Geri Ver</button>
+        </div>
+
+    </div>
+}

@@ -14,7 +14,7 @@ namespace MVCLibrary.Controllers
     public class CategoryController : Controller
     {
         #region DB
-        DBLIBRARYEntities db = new DBLIBRARYEntities();
+        DBLIBRARY db = new DBLIBRARY();
         #endregion
 
         // GET: Category
@@ -37,10 +37,17 @@ namespace MVCLibrary.Controllers
         [HttpPost]
         public ActionResult AddCategory(TBLCATEGORY categoryParameter)
         {
-            db.TBLCATEGORY.Add(categoryParameter);
-            db.SaveChanges();
-            //return RedirectToAction("Index");
-            return View();
+            if (!ModelState.IsValid)
+            {
+                return View("Addcategory");
+            }
+            else
+            {
+                db.TBLCATEGORY.Add(categoryParameter);
+                db.SaveChanges();
+                //return RedirectToAction("Index");
+                return View();
+            }
         }
         #endregion
 

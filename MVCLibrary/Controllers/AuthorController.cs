@@ -9,7 +9,7 @@ namespace MVCLibrary.Controllers
 {
     public class AuthorController : Controller
     {
-        DBLIBRARYEntities db = new DBLIBRARYEntities();
+        DBLIBRARY db = new DBLIBRARY();
         public ActionResult Index()
         {
             var values = db.TBLAUTHOR.ToList();
@@ -26,9 +26,18 @@ namespace MVCLibrary.Controllers
         [HttpPost]
         public ActionResult AddAuthor(TBLAUTHOR parameter)
         {
-            db.TBLAUTHOR.Add(parameter);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            if (!ModelState.IsValid)
+            {
+                return View("AddAuthor");
+            }
+            else
+            {
+                db.TBLAUTHOR.Add(parameter);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            
         }
 
 

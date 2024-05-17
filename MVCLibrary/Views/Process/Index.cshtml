@@ -5,15 +5,8 @@
     Layout = "~/Views/Shared/_MYLayout.cshtml";
 }
 
-<h2>Ödünç Kitap Listesi</h2>
-@*@using (Html.BeginForm("Index", "Book", FormMethod.Get))
-    {
-        <div style="margin-bottom:15px; margin-top:15px">
-            <b>Aranacak Kitap Adını Griniz:</b>@Html.TextBox("parameter")
-            <input type="submit" value="ara" />
-        </div>
+<h2>ALINAN KİTAPLAR</h2>
 
-    }*@
 <table class="table table-striped">
     <tr style="background-color: rgb(252,178,22)">
         <th>İŞLEM ID</th>
@@ -33,7 +26,7 @@
             <td>@item.TBLEMPLOYEE.EMPLOYEE</td>
             <td>@Convert.ToDateTime(item.PURCHASEDATE).ToString("dd/MM/yyyy")</td>
             <td>@Convert.ToDateTime(item.ISSUEDATE).ToString("dd/MM/yyyy")</td>
-            <td><a href="/Loan/LoanGivingBack/@item.ID" class="btn btn-default" style="background-color:#64d8ca">Kitabı İade Et</a></td>
+            <td><a href="/Loan/LoanGivingBack/@item.ID" class="btn btn-default" style="background-color:#f54cf7;color:white">DETAYLAR</a></td>
         </tr>
     }
 </table>

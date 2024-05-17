@@ -12,18 +12,9 @@ namespace MVCLibrary.Models.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class TBLEMPLOYEE
+    public partial class TBLABOUT
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TBLEMPLOYEE()
-        {
-            this.TBLMOVE = new HashSet<TBLMOVE>();
-        }
-    
         public byte ID { get; set; }
-        public string EMPLOYEE { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TBLMOVE> TBLMOVE { get; set; }
+        public string explanation { get; set; }
     }
 }

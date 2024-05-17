@@ -9,11 +9,11 @@ namespace MVCLibrary.Controllers
     public class EmployeeController : Controller
     {
         #region db
-        DBLIBRARYEntities db = new DBLIBRARYEntities();
+        DBLIBRARY db = new DBLIBRARY();
         #endregion
         public ActionResult Index()
         {
-            var values= db.TBLEMPLOYEE.ToList();
+            var values = db.TBLEMPLOYEE.ToList();
 
             return View(values);
         }
@@ -27,13 +27,17 @@ namespace MVCLibrary.Controllers
         [HttpPost]
         public ActionResult AddEmployee(TBLEMPLOYEE parameter)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return View("AddEmployee");
             }
-            db.TBLEMPLOYEE.Add(parameter);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            else
+            {
+
+                db.TBLEMPLOYEE.Add(parameter);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
         }
 
         #endregion
@@ -50,7 +54,7 @@ namespace MVCLibrary.Controllers
         #region GetEmployee
         public ActionResult GetEmployee(int id)
         {
-            var prs=db.TBLEMPLOYEE.Find(id);
+            var prs = db.TBLEMPLOYEE.Find(id);
             return View("GetEmployee", prs);
         }
         #endregion

@@ -13,9 +13,9 @@ namespace MVCLibrary.Controllers
     public class MemberController : Controller
     {
         #region DB
-        DBLIBRARYEntities db=new DBLIBRARYEntities();
+        DBLIBRARY db = new DBLIBRARY();
         #endregion
-        public ActionResult Index(int sayfa=1)
+        public ActionResult Index(int sayfa = 1)
         {
             //var values = db.TBLMEMBERS.ToList();
             var values = db.TBLMEMBERS.ToList().ToPagedList(sayfa, 10);
@@ -34,11 +34,15 @@ namespace MVCLibrary.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View();
+                return View("AddMember");
             }
-            db.TBLMEMBERS.Add(parameter);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            else
+            {
+
+                db.TBLMEMBERS.Add(parameter);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
         }
 
         #endregion
@@ -47,7 +51,7 @@ namespace MVCLibrary.Controllers
         public ActionResult RemoveMember(int id)
         {
             var member = db.TBLMEMBERS.Find(id);
-            db.TBLMEMBERS.Remove(member);   
+            db.TBLMEMBERS.Remove(member);
             db.SaveChanges();
             return RedirectToAction("Index");
 
@@ -58,7 +62,7 @@ namespace MVCLibrary.Controllers
         #region GetMember
         public ActionResult GetMember(int id)
         {
-            var member=db.TBLMEMBERS.Find(id);
+            var member = db.TBLMEMBERS.Find(id);
             return View("GetMember", member);
         }
         #endregion
@@ -68,13 +72,13 @@ namespace MVCLibrary.Controllers
         {
             var member = db.TBLMEMBERS.Find(parameters.ID);
             member.NAME = parameters.NAME;
-            member.SURNAME= parameters.SURNAME;
-            member.NICKNAME= parameters.NICKNAME;
-            member.MAIL= parameters.MAIL;
-            member.PHOTGHRAPH= parameters.PHOTGHRAPH;
-            member.PASSWORD=member.PASSWORD;
-            member.PHONENUMBER=parameters.PHONENUMBER;
-            member.SCHOOL=  parameters.SCHOOL;
+            member.SURNAME = parameters.SURNAME;
+            member.NICKNAME = parameters.NICKNAME;
+            member.MAIL = parameters.MAIL;
+            member.PHOTGHRAPH = parameters.PHOTGHRAPH;
+            member.PASSWORD = member.PASSWORD;
+            member.PHONENUMBER = parameters.PHONENUMBER;
+            member.SCHOOL = parameters.SCHOOL;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

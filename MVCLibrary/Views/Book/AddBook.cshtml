@@ -3,7 +3,7 @@
     ViewBag.Title = "AddBook";
     Layout = "~/Views/Shared/_MYLayout.cshtml";
 }
-
+<link href="~/CustomMyCSS/MyCustomCss1.css" rel="stylesheet" />
 <h2>KİTAP EKLE</h2>
 
 <form method="post" class="form-group">
@@ -12,29 +12,37 @@
     <div style="margin-top:15px">
         <label>KİTAP ADI:</label>
         @Html.TextBoxFor(x => x.NAME, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.NAME, "", new { @class = "custom-validation-message " })
     </div>
     <div style="margin-top:15px">
         <label>KİTAP KATEGORİ:</label>
+        
         @Html.DropDownListFor(x => x.TBLCATEGORY.CATEGORYID, (List<SelectListItem>)ViewBag.dgr, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.TBLCATEGORY.CATEGORYID, "", new { @class = "custom-validation-message " })
     </div>
     <div style="margin-top:15px">
         <label>KİTAP YAZAR:</label>
         @Html.DropDownListFor(x => x.TBLAUTHOR.ID, (List<SelectListItem>)ViewBag.dgr2, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.TBLAUTHOR.ID, "", new { @class = "custom-validation-message " })
     </div>
     <div style="margin-top:15px">
         <label>BASIM YILI:</label>
         @Html.TextBoxFor(x => x.PUBLICYEAR, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.PUBLICYEAR, "", new { @class = "custom-validation-message " })
     </div>
     <div style="margin-top:15px">
         <label>YAYIN EVİ:</label>
         @Html.TextBoxFor(x => x.PUBLISHER, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.PUBLISHER, "", new { @class = "custom-validation-message " })
     </div>
     <div style="margin-top:15px">
         <label>SAYFA</label>
         @Html.TextBoxFor(x => x.SHEET, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.SHEET, "", new { @class = "custom-validation-message " })
     </div>
     <div style="margin-top:15px">
         <button class="btn btn-info"> Yeni Kitap Ekle</button>
     </div>
+    <input type="hidden" name="SITUATION" value="true"/>
 </form>
 

@@ -9,7 +9,7 @@ namespace MVCLibrary.Controllers
 {
     public class BookController : Controller
     {
-        DBLIBRARYEntities db = new DBLIBRARYEntities();
+        DBLIBRARY db = new DBLIBRARY();
         public ActionResult Index(string parameter)
         {
             var books = from k in db.TBLBOOK select k;
@@ -49,14 +49,39 @@ namespace MVCLibrary.Controllers
         [HttpPost]
         public ActionResult AddBook(TBLBOOK parameter)
         {
-            var categories = db.TBLCATEGORY.Where(x => x.CATEGORYID == parameter.TBLCATEGORY.CATEGORYID).FirstOrDefault();
-            var author = db.TBLAUTHOR.Where(x => x.ID == parameter.TBLAUTHOR.ID).FirstOrDefault();
-            parameter.TBLCATEGORY = categories;
-            parameter.TBLAUTHOR = author;
-            db.TBLBOOK.Add(parameter);
-            db.SaveChanges();
+            List<SelectListItem> val1 = (from i in db.TBLCATEGORY.ToList()
+                                         select new SelectListItem
+                                         {
+                                             Text = i.NAME,
+                                             Value = i.CATEGORYID.ToString()
+                                         }).ToList();
 
-            return RedirectToAction("Index");
+            List<SelectListItem> val2 = (from i in db.TBLAUTHOR.ToList()
+                                         select new SelectListItem
+                                         {
+                                             Text = i.NAME + " " + i.SURNAME,
+                                             Value = i.ID.ToString()
+                                         }).ToList();
+
+            ViewBag.dgr = val1;
+            ViewBag.dgr2 = val2;
+            if (!ModelState.IsValid)
+            {
+                return View("AddBook");
+            }
+            else
+            {
+                var categories = db.TBLCATEGORY.Where(x => x.CATEGORYID == parameter.TBLCATEGORY.CATEGORYID).FirstOrDefault();
+                var author = db.TBLAUTHOR.Where(x => x.ID == parameter.TBLAUTHOR.ID).FirstOrDefault();
+                parameter.TBLCATEGORY = categories;
+                parameter.TBLAUTHOR = author;
+                db.TBLBOOK.Add(parameter);
+                db.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+
+            
         }
         #endregion
 
@@ -104,6 +129,7 @@ namespace MVCLibrary.Controllers
             book.PUBLICYEAR = parameter.PUBLICYEAR;
             book.SHEET = parameter.SHEET;
             book.PUBLISHER = parameter.PUBLISHER;
+            book.SITUATION = true;
 
             var ctg = db.TBLCATEGORY.Where(x => x.CATEGORYID == parameter.TBLCATEGORY.CATEGORYID).FirstOrDefault();
             var auth = db.TBLAUTHOR.Where(x => x.ID == parameter.TBLAUTHOR.ID).FirstOrDefault();
